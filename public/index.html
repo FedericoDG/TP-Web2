@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.21.9/dist/css/uikit.min.css" />
+  <link rel="stylesheet" href="./css//styles.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/uikit@3.21.9/dist/js/uikit.min.js"></script>
+  <script defer type="module" src="./js/my-card.js"></script>
+  <script defer type="module" src="./js/main.js"></script>
+  <link rel="icon" type="image/x-icon" href="./assets//favicon.png">
+  <title>The Met Collection</title>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- HERO -->
+    <div class="uk-position-relative hero">
+      <img src="./assets//hero.jpg" width="1920" height="1280" alt="mujer en museo">
+      <div class="uk-position-top">
+        <!-- NAVBAR -->
+        <nav class="uk-navbar-container uk-navbar-transparent">
+          <div class="uk-container">
+            <div uk-navbar>
+              <div class="uk-navbar-left">
+                <a href="/" class="uk-navbar-item uk-logo">The Met Collection</a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <!-- FORM -->
+      <form id="form" class="uk-flex uk-form uk-position-center uk-box-shadow-large uk-padding-small uk-border-rounded">
+        <input type="text" name="keywordInput" placeholder="flowers" class="uk-input uk-margin-small-right">
+        <select name="departmentSelect" id="departmentSelect" class="uk-select uk-margin-small-right"></select>
+        <input type="text" name="locationInput" placeholder="Europe" class="uk-input uk-input uk-margin-small-right">
+        <button id="searchButton" class="uk-button uk-button-secondary uk-border-rounded" type="submit">Buscar</button>
+      </form>
+    </div>
+
+    <div id="container"
+      class="uk-container-large uk-section uk-section-muted hidden gallery-container gallery-container">
+      <h1 id="results" class="uk-text-large uk-text-muted uk-text-center uk-text-uppercase">Resultados</h1>
+      <!-- SPINNER -->
+      <div class="uk-flex uk-flex-center">
+        <span class="uk-margin-small-right hidden" id="spinner" uk-spinner="ratio: 3"></span>
+      </div>
+      <!-- GALLERY -->
+      <div id="gallery" class="uk-container gallery"></div>
+      <!-- PAGINATION -->
+      <div id="pagination" class="uk-container uk-padding uk-padding-small uk-flex uk-flex-center hidden"></div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer id="footer" class="footer">
+      <p class='uk-text-small uk-text-lighter uk-text-center'>Federico González - Desarrollo Web 2</p>
+    </footer>
+  </div>
+
+</body>
+
+</html>
