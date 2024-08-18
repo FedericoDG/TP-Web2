@@ -120,7 +120,7 @@ async function getTranslatedArtWorks(objects) {
 
 async function translate(text) {
   try {
-    const res = await fetch('http://localhost:3000/api/translate', {
+    const res = await fetch(`${process.env.DEPLOY_URL}/api/translate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
