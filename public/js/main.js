@@ -120,7 +120,7 @@ async function getTranslatedArtWorks(objects) {
 
 async function translate(text) {
   try {
-    const res = await fetch(`${process.env.DEPLOY_URL}/api/translate`, {
+    const res = await fetch('https://tp-web2-one.vercel.app/api/translate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
