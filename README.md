@@ -1,4 +1,4 @@
-# WEB 2 (Universidad de La Punta) - Trabajo Final
+# WEB 2 (Universidad de La Punta) - Trabajo Integrador
 
 ## Alumno: Federico González
 
