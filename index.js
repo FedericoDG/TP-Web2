@@ -5,6 +5,7 @@ require('dotenv').config();
 
 const app = express();
 const indexRoutes = require('./src/routes/index.routes');
+const whitelist = ['http://localhost', 'https://tp-web2-one.vercel.app/'];
 
 //Settings
 const port = process.env.PORT || 3000;
@@ -13,7 +14,17 @@ const port = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors('*'));
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (whitelist.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+  })
+);
 
 //Routes
 app.use('/api', indexRoutes);
