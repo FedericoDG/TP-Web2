@@ -99,17 +99,29 @@ async function getTranslatedArtWorks(objects) {
   try {
     return await Promise.all(
       objects.map(async (obj) => {
-        const translatedTitle = (await translate(obj.title || 'Not available')).translation;
-        const translatedCulture = (await translate(obj.culture || 'Not available')).translation;
-        const translatedDinaty = (await translate(obj.dynasty || 'Not available')).translation;
-        const translatedDate = (await translate(obj.objectDate || 'Not available')).translation;
+        const result = await translate({
+          list: [
+            {
+              q: obj.title || 'Not available',
+            },
+            {
+              q: obj.culture || 'Not available',
+            },
+            {
+              q: obj.dynasty || 'Not available',
+            },
+            {
+              q: obj.objectDate || 'Not available',
+            },
+          ],
+        });
 
         return {
           ...obj,
-          title: translatedTitle,
-          culture: translatedCulture,
-          dynasty: translatedDinaty,
-          objectDate: translatedDate,
+          title: result.translations[0].translation,
+          culture: result.translations[1].translation,
+          dynasty: result.translations[2].translation,
+          objectDate: result.translations[3].translation,
         };
       })
     );
@@ -118,14 +130,13 @@ async function getTranslatedArtWorks(objects) {
   }
 }
 
-async function translate(text) {
+async function translate(list) {
   try {
+    // const res = await fetch('http://localhost:3000/api/translate', {
     const res = await fetch('https://tp-web2-one.vercel.app/api/translate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        q: text,
-      }),
+      body: JSON.stringify(list),
     });
     const data = await res.json();
 
@@ -161,7 +172,6 @@ function renderCards(objects) {
 }
 
 function renderPagination() {
-  console.log(totalPages);
   pagination.innerHTML = '';
   for (let i = 1; i <= totalPages; i++) {
     const paginationBtn = document.createElement('button');

@@ -11,6 +11,17 @@ body {
 .container {
   display: grid;
   grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+.container2 {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 100vh;
+}
+
+.slider {
+  max-width: 50%;
 }
 
 .hero {
@@ -27,6 +38,10 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
+}
+
+.extra-image-container {
+  max-width: 300px;
 }
 
 .card {
