@@ -25,7 +25,7 @@ body {
 }
 
 .hero {
-  height: calc(100vh - 21px);
+  height: calc(100vh - 24px);
   overflow: hidden;
 }
 
@@ -55,7 +55,8 @@ body {
 }
 
 .footer p {
-  margin: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .hidden {
