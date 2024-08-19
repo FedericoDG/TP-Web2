@@ -12,6 +12,7 @@
   "description": "Trabajo Final de la materia WEB 2 - Tec. Universitaria en Desarrollo - Universidad de La Punta",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "node-google-translate-skidz": "^1.1.2"
   },
