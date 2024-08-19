@@ -171,7 +171,7 @@ function createCard(object) {
   mediaTop.setAttribute('class', 'uk-card-media-top');
 
   const img = document.createElement('img');
-  img.src = object.primaryImageSmall || './images/no_image.jpg';
+  img.src = object.primaryImageSmall || '../assets/no_image.jpg';
   img.alt = object.title || 'Imagen de obra de arte';
   img.setAttribute('uk-tooltip', `title: ${object.objectDate}; delay: 350`);
 
