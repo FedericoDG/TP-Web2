@@ -162,21 +162,54 @@ async function translate(list) {
 }
 
 function createCard(object) {
-  const card = document.createElement('my-card');
+  const fragment = document.createDocumentFragment();
 
-  card.setAttribute('image-src', object.primaryImageSmall || './assets/no_image.jpg');
-  card.setAttribute('image-alt', object.title || 'Imagen de obra de arte');
-  card.setAttribute('object-date', object.objectDate || '');
-  card.setAttribute('title', object.title || 'Sin título');
-  card.setAttribute('culture', object.culture || 'Desconocida');
-  card.setAttribute('dynasty', object.dynasty || 'Desconocida');
+  const card = document.createElement('div');
+  card.setAttribute('class', 'uk-card uk-card-default uk-border-rounded');
+
+  const mediaTop = document.createElement('div');
+  mediaTop.setAttribute('class', 'uk-card-media-top');
+
+  const img = document.createElement('img');
+  img.src = object.primaryImageSmall || './images/no_image.jpg';
+  img.alt = object.title || 'Imagen de obra de arte';
+  img.setAttribute('uk-tooltip', `title: ${object.objectDate}; delay: 350`);
+
+  const cardBody = document.createElement('div');
+  cardBody.setAttribute('class', 'uk-card-body');
+
+  const title = document.createElement('h3');
+  title.setAttribute('class', 'uk-text-default uk-text-bold');
+  title.textContent = object.title;
+
+  const culture = document.createElement('p');
+  culture.setAttribute('class', 'uk-text-small');
+  culture.textContent = `Cultura: ${object.culture}`;
+
+  const dynasty = document.createElement('p');
+  dynasty.setAttribute('class', 'uk-text-small');
+  dynasty.textContent = `Dinastía: ${object.dynasty}`;
+
+  mediaTop.appendChild(img);
+  cardBody.appendChild(title);
+  cardBody.appendChild(culture);
+  cardBody.appendChild(dynasty);
 
   if (object?.additionalImages && object.additionalImages.length > 0) {
-    card.setAttribute('view-more', 'true');
-    card.setAttribute('view-more-url', `/details.html?objectId=${object.objectID}`);
+    const viewMoreImages = document.createElement('a');
+    viewMoreImages.setAttribute('class', 'uk-button uk-button-default uk-border-rounded card');
+    viewMoreImages.setAttribute('href', `/details.html?objectId=${object.objectID}`);
+    viewMoreImages.textContent = 'VER MÁS IMÁGENES';
+
+    cardBody.appendChild(viewMoreImages);
   }
 
-  return card;
+  card.appendChild(mediaTop);
+  card.appendChild(cardBody);
+
+  fragment.appendChild(card);
+
+  return fragment;
 }
 
 function renderCards(objects) {
