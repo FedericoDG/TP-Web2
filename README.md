@@ -72,7 +72,7 @@ Desarrollar una página que consuma imágenes del Museo Metropolitano de Nueva Y
    npm run dev
    ```
 
-### Tecnologías Utilizadas
+### Tecnologías utilizadas
 
 - **HTML5:** Estructura del contenido.
 - **CSS3:** Estilos y diseño responsivo.
