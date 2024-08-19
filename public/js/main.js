@@ -19,6 +19,7 @@ form.addEventListener('submit', (event) => {
 const baseUrl = 'https://collectionapi.metmuseum.org/public/collection/v1';
 let currentPage = 1;
 let totalPages = 0;
+let currentSearchObject = null;
 
 getDepartments();
 
@@ -46,6 +47,12 @@ async function getDepartments() {
 
 async function fetchObjects(searchObject) {
   try {
+    if (searchObject) {
+      currentSearchObject = searchObject; // Guardar el objeto de búsqueda actual
+    } else {
+      searchObject = currentSearchObject; // Usar el objeto de búsqueda guardado si no se pasa uno nuevo
+    }
+
     const { keywordInput, departmentSelect, locationInput } = searchObject;
     seachStarting();
 
@@ -55,7 +62,7 @@ async function fetchObjects(searchObject) {
     if (departmentSelect) query.push(`departmentSelect=${departmentSelect}`);
     if (locationInput) query.push(`geoLocation.value=${locationInput}`);
 
-    const url = `${baseUrl}/search?${query.join('&')}&hasImages=true`; // hasImages=true (include images)
+    const url = `${baseUrl}/search?${query.join('&')}&hasImages=true`;
 
     const objectIDs = await getArtWorkIDs(url);
     const objects = await getArtWors(objectIDs);
@@ -74,9 +81,14 @@ async function getArtWorkIDs(url) {
   try {
     const getObjects = await fetch(url);
     const objects = await getObjects.json();
-    const objectIDs = objects.objectIDs ? objects.objectIDs.slice(0, 20) : []; // Get 20 first IDs
 
-    totalPages = Math.ceil((objects.objectIDs ? objects.objectIDs.length : 0) / 20);
+    const totalResults = objects.objectIDs ? objects.objectIDs.length : 0;
+    totalPages = Math.ceil(totalResults / 20);
+
+    const startIndex = (currentPage - 1) * 20;
+    const endIndex = startIndex + 20;
+
+    const objectIDs = objects.objectIDs ? objects.objectIDs.slice(startIndex, endIndex) : [];
 
     return objectIDs;
   } catch (error) {
@@ -185,7 +197,7 @@ function renderPagination() {
     }
     paginationBtn.addEventListener('click', () => {
       currentPage = i;
-      fetchObjects();
+      fetchObjects(); // No pasamos un objeto de búsqueda aquí
     });
     pagination.appendChild(paginationBtn);
   }
