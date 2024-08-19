@@ -50,6 +50,8 @@ body {
 
 .pagination-btn {
   margin-left: 4px;
+  margin-bottom: 4px;
+  width: 48px;
 }
 
 .footer p {
