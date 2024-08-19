@@ -13,7 +13,10 @@ form.addEventListener('submit', (event) => {
   const data = new FormData(event.target);
   const object = Object.fromEntries(data.entries());
 
-  if (object.keywordInput) fetchObjects(object);
+  if (object.keywordInput) {
+    fetchObjects(object);
+    form.reset();
+  }
 });
 
 const baseUrl = 'https://collectionapi.metmuseum.org/public/collection/v1';
