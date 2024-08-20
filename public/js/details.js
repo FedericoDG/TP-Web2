@@ -3,13 +3,15 @@ const spinner = document.getElementById('spinner');
 const sliderContainer = document.getElementById('sliderContainer');
 const slider = document.getElementById('slider');
 
+// VARIABLES
 const urlParams = new URLSearchParams(window.location.search);
 const objectId = urlParams.get('objectId');
-
 const baseUrl = 'https://collectionapi.metmuseum.org/public/collection/v1';
 
+// init
 init();
 
+// FUNCTIONS
 async function init() {
   const object = await getArtWork(objectId);
   const { additionalImages } = object;
@@ -35,10 +37,8 @@ async function getArtWork(objectId) {
 }
 
 function createCard(object) {
-  // Crear un fragmento de documento para mejorar el rendimiento
   const fragment = document.createDocumentFragment();
 
-  // Crear la estructura de la tarjeta
   const container = document.createElement('div');
 
   const link = document.createElement('a');
@@ -55,12 +55,10 @@ function createCard(object) {
   const overlay = document.createElement('div');
   overlay.setAttribute('class', 'uk-position-center uk-panel');
 
-  // Ensamblar el contenido
   link.appendChild(img);
   container.appendChild(link);
   container.appendChild(overlay);
 
-  // Añadir el contenedor al fragmento
   fragment.appendChild(container);
 
   return fragment;

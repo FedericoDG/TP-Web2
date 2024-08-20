@@ -8,6 +8,13 @@ const pagination = document.getElementById('pagination');
 const results = document.getElementById('results');
 const spinner = document.getElementById('spinner');
 
+// VARIABLES
+const baseUrl = 'https://collectionapi.metmuseum.org/public/collection/v1';
+let currentPage = 1;
+let totalPages = 0;
+let currentSearchObject = null;
+
+// EVENTS
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const data = new FormData(event.target);
@@ -19,11 +26,7 @@ form.addEventListener('submit', (event) => {
   }
 });
 
-const baseUrl = 'https://collectionapi.metmuseum.org/public/collection/v1';
-let currentPage = 1;
-let totalPages = 0;
-let currentSearchObject = null;
-
+// INIT
 getDepartments();
 
 // FUNTIONS
