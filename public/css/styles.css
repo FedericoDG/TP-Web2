@@ -60,7 +60,7 @@ body {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .block {
@@ -69,4 +69,20 @@ body {
 
 .flex {
   display: flex;
+}
+
+.departments {
+  width: 250px !important;
+}
+
+.padding-0 {
+  padding: 0 !important;
+}
+
+.input {
+  width: 242px !important;
+}
+
+.departments-spinner {
+  padding-left: 8px;
 }

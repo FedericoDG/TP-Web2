@@ -32,9 +32,17 @@
       </div>
       <!-- FORM -->
       <form id="form" class="uk-flex uk-form uk-position-center uk-box-shadow-large uk-padding-small uk-border-rounded">
-        <input type="text" name="keywordInput" placeholder="flowers" class="uk-input uk-margin-small-right">
-        <select name="departmentSelect" id="departmentSelect" class="uk-select uk-margin-small-right"></select>
-        <input type="text" name="locationInput" placeholder="Europe" class="uk-input uk-input uk-margin-small-right">
+        <input type="text" name="keywordInput" placeholder="flowers"
+          class="uk-input uk-margin-small-right uk-border-rounded input" autofocus>
+        <div id="departmentsSpinner"
+          class="uk-flex uk-flex-center uk-flex-middle uk-margin-small-right uk-border-rounded uk-section-muted departments-spinner departments padding-0">
+          <span class="uk-margin-small-left uk-margin-small-right" id="spinner" uk-spinner="ratio: 1"></span>
+          <!-- <span class="uk-text-default departments">Cargando departamentos...</span> -->
+        </div>
+        <select name="departmentSelect" id="departmentSelect"
+          class="uk-select uk-margin-small-right uk-border-rounded departments hidden"></select>
+        <input type="text" name="locationInput" placeholder="Europe"
+          class="uk-input uk-input uk-margin-small-right uk-border-rounded input">
         <button id="searchButton" class="uk-button uk-button-secondary uk-border-rounded" type="submit">Buscar</button>
       </form>
     </div>

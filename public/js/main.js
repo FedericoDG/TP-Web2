@@ -7,6 +7,7 @@ const gallery = document.getElementById('gallery');
 const pagination = document.getElementById('pagination');
 const results = document.getElementById('results');
 const spinner = document.getElementById('spinner');
+const departmentsSpinner = document.getElementById('departmentsSpinner');
 
 // VARIABLES
 const baseUrl = 'https://collectionapi.metmuseum.org/public/collection/v1';
@@ -48,6 +49,9 @@ async function getDepartments() {
     });
   } catch (error) {
     console.error(error);
+  } finally {
+    departmentsSpinner.classList.add('hidden');
+    departmentSelect.classList.remove('hidden');
   }
 }
 
