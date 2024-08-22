@@ -13,27 +13,38 @@ init();
 
 // FUNCTIONS
 async function init() {
-  const object = await getArtWork(objectId);
-  const { additionalImages } = object;
+  try {
+    if (!objectId) {
+      history.back();
+    }
+    const object = await getArtWork(objectId);
+    const { additionalImages } = object;
 
-  spinner.classList.add('hidden');
-  sliderContainer.classList.remove('hidden');
+    spinner.classList.add('hidden');
+    sliderContainer.classList.remove('hidden');
 
-  const objects = additionalImages.map((image, idx) => ({
-    imageSrc: image,
-    imageAlt: object.title,
-    imageHref: image,
-    imageCaption: object.title,
-  }));
+    const objects = additionalImages.map((image, idx) => ({
+      imageSrc: image,
+      imageAlt: object.title,
+      imageHref: image,
+      imageCaption: object.title,
+    }));
 
-  renderExtraImages(objects);
+    renderExtraImages(objects);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 async function getArtWork(objectId) {
-  const response = await fetch(`${baseUrl}/objects/${objectId}`);
-  const data = await response.json();
+  try {
+    const response = await fetch(`${baseUrl}/objects/${objectId}`);
+    const data = await response.json();
 
-  return data;
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function createCard(object) {
