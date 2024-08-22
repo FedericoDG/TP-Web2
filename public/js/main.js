@@ -262,7 +262,7 @@ function searchEnding() {
   pagination.classList.add('flex');
 
   window.scrollBy({
-    top: window.innerHeight - 240,
+    top: window.innerHeight - 320,
     behavior: 'smooth',
   });
 }
