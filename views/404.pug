@@ -1,0 +1,34 @@
+doctype html
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.21.9/dist/css/uikit.min.css")
+    link(rel="stylesheet" href="./css/styles.css")
+    link(rel="icon" type="image/x-icon" href="./assets/favicon.png")
+    title The Met Collection - 404
+  body
+    .container
+      //- HERO
+      .uk-position-relative.hero
+        img(src="./assets/hero.jpg" width="1920" height="1280" alt="mujer en museo")
+        .uk-position-top
+          //- NAVBAR
+          nav.uk-navbar-container.uk-navbar-transparent
+            .uk-container
+              div(uk-navbar)
+                .uk-navbar-left
+                  a.uk-navbar-item.uk-logo(href="/") Museo Metropolitano NY
+
+        //- ERROR TEXT
+        div.uk-form.uk-position-center.uk-box-shadow-large.uk-padding-small.uk-border-rounded.uk-section-muted
+          h1.uk-heading-large ERROR 404
+          p.uk-text-lead La página que estás buscando no existe.
+          a(href="/").uk-button.uk-button-default.uk-border-rounded Volver
+
+
+      //- FOOTER
+      footer#footer.uk-flex.uk-flex-center.footer
+        p.uk-link-muted Federico González
+        p &nbsp &nbsp
+        a.uk-link(href="https://github.com/FedericoDG/TP-Web2" target="_blank") Github

@@ -77,6 +77,7 @@ Desarrollar una página que consuma imágenes del Museo Metropolitano de Nueva Y
 - **HTML5:** Estructura del contenido.
 - **CSS3:** Estilos y diseño responsivo.
 - **JavaScript (ES6+):** Lógica de la aplicación, manejo de eventos y solicitudes a la API del Museo Metropolitano de NY.
+- **Pug**: Motor de plantillas utilizado para generar las vistas de manera dinámica.
 - **Google Translate Node JS:** Para ejecutar la traducción de los textos utilizando Google Translate.
 - **UIkit:** Framework CSS para el diseño de la interfaz de usuario.
 - **Vercel:** Para el despliegue y hosting de la aplicación.
