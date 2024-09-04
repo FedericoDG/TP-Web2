@@ -1,0 +1,60 @@
+doctype html
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/uikit@3.21.9/dist/css/uikit.min.css")
+    link(rel="stylesheet", href="./css/lightbox.css")
+    link(rel="stylesheet", href="./css/styles.css")
+    script(defer, src="https://cdn.jsdelivr.net/npm/uikit@3.21.9/dist/js/uikit.min.js")
+    link(rel="icon", type="image/x-icon", href="./assets/favicon.png")
+    title The Met Collection
+
+  body
+    .container2
+      // HERO
+      .uk-position-relative.hero
+        img(src="./assets/hero.jpg", width="1920", height="1280", alt="mujer en museo")
+        .uk-position-top
+          // NAVBAR
+          nav.uk-navbar-container.uk-navbar-transparent
+            .uk-container
+              div(uk-navbar)
+                .uk-navbar-left
+                  a.uk-navbar-item.uk-logo(href="/") Museo Metropolitano NY
+
+        // SLIDER
+        #sliderContainer.uk-position-center.uk-box-shadow-large.uk-padding-large.uk-border-rounded.uk-section-muted(uk-slider)
+          .uk-position-relative
+            .uk-slider-container.uk-light
+              #slider.uk-slider-items
+                // Itera sobre los objetos adicionales pasados desde el backend
+                each additionalImage in additionalImages
+                  div
+                    a(href=additionalImage, data-lightbox="models", data-title="Imagen obra de arte")
+                      img(src=additionalImage, width="300", height="450", alt="Imagen obra de arte")
+                    .uk-position-center.uk-panel
+
+            div(class="uk-hidden uk-light")
+              a.uk-position-center-left.uk-position-small(href, uk-slidenav-previous, uk-slider-item="previous")
+              a.uk-position-center-right.uk-position-small(href, uk-slidenav-next, uk-slider-item="next")
+
+            div(class="uk-visible")
+              a.uk-position-center-left-out.uk-position-small(href, uk-slidenav-previous, uk-slider-item="previous")
+              a.uk-position-center-right-out.uk-position-small(href, uk-slidenav-next, uk-slider-item="next")
+
+          ul.uk-slider-nav.uk-dotnav.uk-flex-center.uk-margin
+          .uk-margin-small-top
+            button.uk-button.uk-button-default.uk-border-rounded(onclick="history.back()") Volver
+
+    // FOOTER
+    footer#footer.uk-flex.uk-flex-center.footer
+      p.uk-link-muted Federico González
+      p &nbsp;&nbsp;
+      a.uk-link(href="https://github.com/FedericoDG/TP-Web2", target="_blank") Github
+
+    script(src="./js/lightbox-plus-jquery.js")
+    script.
+      lightbox.option({
+        albumLabel: "Imagen %1 de %2"
+      })

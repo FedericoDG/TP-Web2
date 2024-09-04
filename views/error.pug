@@ -1,0 +1,48 @@
+doctype html
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.21.9/dist/css/uikit.min.css")
+    link(rel="stylesheet" href="./css/styles.css")
+    link(rel="icon" type="image/x-icon" href="./assets/favicon.png")
+    script(defer src="https://cdn.jsdelivr.net/npm/uikit@3.21.9/dist/js/uikit.min.js")
+    script(defer type="module" src="./js/main.js")
+    title Error
+  body
+    .container
+      //- HERO
+      .uk-position-relative.hero
+        img(src="./assets/hero.jpg" width="1920" height="1280" alt="mujer en museo")
+        .uk-position-top
+          //- NAVBAR
+          nav.uk-navbar-container.uk-navbar-transparent
+            .uk-container
+              div(uk-navbar)
+                .uk-navbar-left
+                  a.uk-navbar-item.uk-logo(href="/") Museo Metropolitano NY
+
+        //- FORM
+        form#form.uk-flex.uk-form.uk-position-center.uk-box-shadow-large.uk-padding-small.uk-border-rounded
+          input.uk-input.uk-margin-small-right.uk-border-rounded.input(type="text" name="keywordInput" placeholder="flowers" autofocus)
+          select#departmentSelect.uk-select.uk-margin-small-right.uk-border-rounded.departments(name="departmentSelect")
+          input.uk-input.uk-margin-small-right.uk-border-rounded.input(type="text" name="locationInput" placeholder="Europe")
+          button#searchButton.uk-button.uk-button-secondary.uk-border-rounded(type="submit") Buscar
+
+      #container.uk-container-large.uk-section.uk-section-muted.hidden.gallery-container
+        h1#results.uk-text-large.uk-text-muted.uk-text-center.uk-text-uppercase Resultados
+        //- SPINNER
+        .uk-flex.uk-flex-center
+          span#spinner.uk-margin-small-right.hidden(uk-spinner="ratio: 3")
+
+        //- GALLERY
+        #gallery.uk-container.gallery
+
+        //- PAGINATION
+        #pagination.uk-padding.uk-flex.uk-flex-center.hidden.uk-flex-wrap
+
+      //- FOOTER
+      footer#footer.uk-flex.uk-flex-center.footer
+        p.uk-link-muted Federico González
+        p &nbsp &nbsp
+        a.uk-link(href="https://github.com/FedericoDG/TP-Web2" target="_blank") Github

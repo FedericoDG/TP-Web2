@@ -13,6 +13,7 @@ const baseUrl = 'https://collectionapi.metmuseum.org/public/collection/v1';
 let currentPage = 1;
 let totalPages = 0;
 let currentSearchObject = null;
+let ids = null;
 
 // EVENTS
 form.addEventListener('submit', (event) => {
@@ -21,6 +22,7 @@ form.addEventListener('submit', (event) => {
   const object = Object.fromEntries(data.entries());
 
   if (object.keywordInput) {
+    ids = null;
     fetchObjects(object);
     form.reset();
   }
@@ -54,9 +56,9 @@ async function getDepartments() {
 async function fetchObjects(searchObject) {
   try {
     if (searchObject) {
-      currentSearchObject = searchObject; // Guardar el objeto de búsqueda actual
+      currentSearchObject = searchObject;
     } else {
-      searchObject = currentSearchObject; // Usar el objeto de búsqueda guardado si no se pasa uno nuevo
+      searchObject = currentSearchObject;
     }
 
     const { keywordInput, departmentSelect, locationInput } = searchObject;
@@ -85,16 +87,21 @@ async function fetchObjects(searchObject) {
 
 async function getArtWorkIDs(url) {
   try {
-    const getObjects = await fetch(url);
-    const objects = await getObjects.json();
+    let objects;
+    if (!ids) {
+      console.log('no tengo ids, llamo a la api');
+      const getObjects = await fetch(url);
+      objects = await getObjects.json();
+      ids = objects.objectIDs;
+    }
 
-    const totalResults = objects.objectIDs ? objects.objectIDs.length : 0;
+    const totalResults = ids ? ids.length : 0;
     totalPages = Math.ceil(totalResults / 20);
 
     const startIndex = (currentPage - 1) * 20;
     const endIndex = startIndex + 20;
 
-    const objectIDs = objects.objectIDs ? objects.objectIDs.slice(startIndex, endIndex) : [];
+    const objectIDs = ids ? [...ids].slice(startIndex, endIndex) : [];
 
     return objectIDs;
   } catch (error) {
@@ -150,7 +157,6 @@ async function getTranslatedArtWorks(objects) {
 
 async function translate(list) {
   try {
-    // const res = await fetch('http://localhost:3000/api/translate', {
     const res = await fetch('https://tp-web2-one.vercel.app/api/translate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -201,7 +207,8 @@ function createCard(object) {
   if (object?.additionalImages && object.additionalImages.length > 0) {
     const viewMoreImages = document.createElement('a');
     viewMoreImages.setAttribute('class', 'uk-button uk-button-default uk-border-rounded card');
-    viewMoreImages.setAttribute('href', `/details.html?objectId=${object.objectID}`);
+    const additionalImages = encodeURIComponent(JSON.stringify(object.additionalImages));
+    viewMoreImages.setAttribute('href', `/details?additionalImages=${additionalImages}`);
     viewMoreImages.textContent = 'VER MÁS IMÁGENES';
 
     cardBody.appendChild(viewMoreImages);
