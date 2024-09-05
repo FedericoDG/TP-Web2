@@ -67,8 +67,8 @@ async function fetchObjects(searchObject) {
     const query = [];
 
     if (keywordInput) query.push(`q=${keywordInput}`);
-    if (departmentSelect) query.push(`departmentSelect=${departmentSelect}`);
-    if (locationInput) query.push(`geoLocation.value=${locationInput}`);
+    if (departmentSelect) query.push(`departmentId=${departmentSelect}`);
+    if (locationInput) query.push(`geoLocation=${locationInput}`);
 
     const url = `${baseUrl}/search?${query.join('&')}&hasImages=true`;
 
