@@ -7,7 +7,8 @@ html(lang="es")
     link(rel="stylesheet" href="./css/styles.css")
     link(rel="icon" type="image/x-icon" href="./assets/favicon.png")
     script(defer src="https://cdn.jsdelivr.net/npm/uikit@3.21.9/dist/js/uikit.min.js")
-    script(defer type="module" src="./js/main.js")
+    script(defer src="https://cdn.jsdelivr.net/npm/uikit@3.21.11/dist/js/uikit-icons.min.js")
+    script(defer src="./js/main.js")
     title The Met Collection
   body
     .container
@@ -23,11 +24,19 @@ html(lang="es")
                   a.uk-navbar-item.uk-logo(href="/") Museo Metropolitano NY
 
         //- FORM
-        form#form.uk-flex.uk-form.uk-position-center.uk-box-shadow-large.uk-padding-small.uk-border-rounded
-          input.uk-input.uk-margin-small-right.uk-border-rounded.input(type="text" name="keywordInput" placeholder="flowers" autofocus)
-          select#departmentSelect.uk-select.uk-margin-small-right.uk-border-rounded.departments(name="departmentSelect")
-          input.uk-input.uk-margin-small-right.uk-border-rounded.input(type="text" name="locationInput" placeholder="Europe")
-          button#searchButton.uk-button.uk-button-secondary.uk-border-rounded(type="submit") Buscar
+        form#form.uk-flex.uk-form.uk-position-center.uk-flex-bottom.uk-box-shadow-large.uk-padding-small.uk-border-rounded
+          div
+            label.uk-display-block.uk-text-emphasis(for="query" uk-tooltip="title: Obligatorio") Término a buscar
+              span.uk-margin-small-left(uk-icon="icon: info; ratio: 0.75")
+            input#query.uk-input.uk-margin-small-right.uk-margin-small-top.uk-border-rounded.input(type="text" name="keywordInput" placeholder="flowers" autofocus)
+          div
+            label.uk-display-block.uk-text-emphasis(for="departmentSelect") Departamento
+            select#departmentSelect.uk-select.uk-margin-small-right.uk-margin-small-top.uk-border-rounded.departments(name="departmentSelect")
+          div
+            label.uk-display-block.uk-text-emphasis(for="location" uk-tooltip="title: Opcional - Case-Sensitive") Ubicación
+              span.uk-margin-small-left(uk-icon="icon: info; ratio: 0.75")
+            input#location.uk-input.uk-margin-small-right.uk-margin-small-top.uk-border-rounded.input(type="text" name="locationInput" placeholder="Europe")
+          button#searchButton.uk-button.uk-button-secondary.uk-border-rounded.btn-disabled(type="submit" disabled="true") Buscar
 
       #container.uk-container-large.uk-section.uk-section-muted.hidden.gallery-container
         h1#results.uk-text-large.uk-text-muted.uk-text-center.uk-text-uppercase Resultados

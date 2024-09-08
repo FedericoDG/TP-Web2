@@ -5,7 +5,9 @@ const footer = document.getElementById('footer');
 const form = document.getElementById('form');
 const gallery = document.getElementById('gallery');
 const pagination = document.getElementById('pagination');
+const query = document.getElementById('query');
 const results = document.getElementById('results');
+const searchButton = document.getElementById('searchButton');
 const spinner = document.getElementById('spinner');
 
 // VARIABLES
@@ -16,6 +18,16 @@ let currentSearchObject = null;
 let ids = null;
 
 // EVENTS
+query.addEventListener('input', () => {
+  if (query.value.trim() !== '') {
+    searchButton.removeAttribute('disabled');
+    searchButton.classList.remove('btn-disabled');
+  } else {
+    searchButton.setAttribute('disabled', 'disabled');
+    searchButton.classList.add('btn-disabled');
+  }
+});
+
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const data = new FormData(event.target);
@@ -81,7 +93,6 @@ async function fetchObjects(searchObject) {
     console.error(error);
   } finally {
     searchEnding();
-    renderPagination();
   }
 }
 
@@ -89,7 +100,6 @@ async function getArtWorkIDs(url) {
   try {
     let objects;
     if (!ids) {
-      console.log('no tengo ids, llamo a la api');
       const getObjects = await fetch(url);
       objects = await getObjects.json();
       ids = objects.objectIDs;
@@ -243,7 +253,7 @@ function renderPagination() {
     }
     paginationBtn.addEventListener('click', () => {
       currentPage = i;
-      fetchObjects(); // No pasamos un objeto de búsqueda aquí
+      fetchObjects(); // No pasamos un objeto de búsqueda
     });
     pagination.appendChild(paginationBtn);
   }
@@ -262,11 +272,16 @@ function seachStarting() {
 }
 
 function searchEnding() {
-  results.textContent = 'Resultados';
+  if (ids?.length) {
+    renderPagination();
+    results.textContent = 'Resultados';
+    pagination.classList.remove('hidden');
+    pagination.classList.add('flex');
+  } else {
+    results.textContent = 'No se encontraron resultados';
+  }
   spinner.classList.remove('block');
   spinner.classList.add('hidden');
-  pagination.classList.remove('hidden');
-  pagination.classList.add('flex');
 
   window.scrollBy({
     top: window.innerHeight - 320,

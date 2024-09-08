@@ -58,5 +58,5 @@ app.use((req, res, next) => {
 // Server init
 app.listen(port, () => {
   console.clear();
-  console.log(`Server live on port: ${port}`);
+  console.log(`Server live on: http://localhost:${port}`);
 });
