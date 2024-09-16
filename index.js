@@ -10,10 +10,10 @@ const indexRoutes = require('./src/routes/index.routes');
 const port = process.env.PORT || 3000;
 
 // Middlewares
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cors('*'));
+app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({ extended: false }));
 
 // Template engine
 app.set('view engine', 'pug');
