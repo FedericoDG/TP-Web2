@@ -1,6 +1,6 @@
 const cors = require('cors');
 const express = require('express');
-var path = require('path');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -22,7 +22,7 @@ app.set('views', path.join(__dirname, 'views'));
 // Routes
 app.use('/api', indexRoutes);
 
-app.get('/', (_, res) => {
+app.get('/', (_req, res) => {
   res.render('index');
 });
 
@@ -42,14 +42,14 @@ app.get('/details', (req, res) => {
   }
 });
 
-app.get('/error', (_, res) => {
+app.get('/error', (_req, res) => {
   res.status(500).render('error', {
     message: 'Ocurrió un error al procesar tu solicitud. Por favor, intenta nuevamente.',
   });
 });
 
 // Middleware para manejar errores 404
-app.use((req, res, next) => {
+app.use((_req, res, _next) => {
   res.status(404).render('404', {
     message: 'Lo sentimos, la página que estás buscando no existe.',
   });

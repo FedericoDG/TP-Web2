@@ -4,7 +4,7 @@
 
 ### Consigna:
 
-Desarrollar una página que consuma imágenes del Museo Metropolitano de Nueva York utilizando la API proporcionada por el [Museo Metropolitano de NY](https://collectionapi.metmuseum.org). La información sobre los endpoints disponibles y cómo usarlos se encuentra en [este repositorio](https://metmuseum.github.io).
+Desarrollar una página que consuma imágenes del Museo Metropolitano de Nueva York utilizando la API proporcionada por el [Museo Metropolitano de NY](https://www.metmuseum.org). La información sobre los endpoints disponibles y cómo usarlos se encuentra en [este repositorio](https://metmuseum.github.io).
 
 #### Requisitos:
 
